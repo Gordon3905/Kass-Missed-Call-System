@@ -60,6 +60,7 @@ export function createCallRepository(db) {
           t.id AS callback_task_id,
           t.due_at,
           t.status AS callback_status,
+          t.status AS task_status,
           t.outcome,
           t.outcome_notes,
           t.completed_at,
