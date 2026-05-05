@@ -160,10 +160,11 @@ Default rules:
 - High urgency:
   - alert sales team immediately through SMS/email provider
   - create callback task due now
+  - use a default `high_urgency_escalation_minutes` value of `30`
   - escalate if not actioned within the client's `high_urgency_escalation_minutes`
 
 - Medium urgency:
-  - create callback task for the next business day
+  - create callback task for the next business day in the client's configured timezone and business hours
   - queue reminder for the sales team
 
 - Low urgency:
@@ -329,4 +330,5 @@ This design is ready to become an implementation plan. The first implementation 
 4. Implement missed-call processing workflow.
 5. Implement metrics, outcomes, and stale escalation.
 6. Build the React dashboard and editors.
-7. Add tests and run verification.
+7. Add realistic seed data with varied buyer, support, rescheduling, urgent, unqualified, and wrong-number caller intents.
+8. Add tests and run verification.
