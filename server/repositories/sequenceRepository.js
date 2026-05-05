@@ -12,6 +12,7 @@ export function createSequenceRepository(db) {
     upsertSequence(input) {
       const id = input.id || `seq_${input.client_id}_${input.urgency}`;
       const timestamp = now();
+      const enabled = input.enabled === false || input.enabled === 0 ? 0 : 1;
       db.prepare(`
         INSERT INTO follow_up_sequences
         (id, client_id, urgency, due_window_minutes, channels, escalation_minutes, enabled, created_at, updated_at)
@@ -22,7 +23,7 @@ export function createSequenceRepository(db) {
           escalation_minutes=excluded.escalation_minutes,
           enabled=excluded.enabled,
           updated_at=excluded.updated_at
-      `).run(id, input.client_id, input.urgency, input.due_window_minutes, JSON.stringify(input.channels || []), input.escalation_minutes ?? 30, input.enabled ?? 1, input.created_at || timestamp, timestamp);
+      `).run(id, input.client_id, input.urgency, input.due_window_minutes, JSON.stringify(input.channels || []), input.escalation_minutes ?? 30, enabled, input.created_at || timestamp, timestamp);
       return parseSequence(db.prepare('SELECT * FROM follow_up_sequences WHERE client_id = ? AND urgency = ?').get(input.client_id, input.urgency));
     },
 

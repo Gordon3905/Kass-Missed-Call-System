@@ -122,4 +122,45 @@ describe('repositories', () => {
 
     expect(sequences.listTemplates('client_1')[0].body).toBe('Call {{caller_name}} now.');
   });
+
+  it('saves sequence bundles returned from the dashboard with boolean enabled values', () => {
+    const clients = createClientRepository(db);
+    const sequences = createSequenceRepository(db);
+    clients.upsert({
+      id: 'client_1',
+      name: 'Apex Dental',
+      brand_name: 'Apex Dental',
+      logo_url: '',
+      primary_color: '#155EEF',
+      timezone: 'America/New_York',
+      business_hours: { monday: ['09:00', '17:00'] },
+      high_urgency_escalation_minutes: 30,
+      retention_days: 365,
+    });
+
+    const result = sequences.saveClientSequenceBundle('client_1', {
+      sequences: [
+        {
+          id: 'seq_high',
+          urgency: 'high',
+          due_window_minutes: 0,
+          channels: ['sms', 'email'],
+          escalation_minutes: 30,
+          enabled: true,
+        },
+      ],
+      templates: [
+        {
+          id: 'template_high_sms',
+          urgency: 'high',
+          channel: 'sms',
+          subject: '',
+          body: 'Browser saved {{caller_name}}.',
+        },
+      ],
+    });
+
+    expect(result.sequences[0].enabled).toBe(true);
+    expect(result.templates[0].body).toBe('Browser saved {{caller_name}}.');
+  });
 });
