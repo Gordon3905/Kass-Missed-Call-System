@@ -5,10 +5,10 @@ export function AppShell({ client, status, busy, style, onProcessDemo, onEscalat
     <div className="app-shell" style={style}>
       <aside className="sidebar">
         <div className="brand-lockup">
-          <div className="brand-mark">CV</div>
+          <div className="brand-mark">KA</div>
           <div>
-            <strong>{client?.brand_name || 'CoVault'}</strong>
-            <span>Missed Call Capture</span>
+            <strong>{client?.brand_name || 'Kavor Calls'}</strong>
+            <span>Kavor Automation System</span>
           </div>
         </div>
         <nav className="nav-list" aria-label="Primary">
@@ -20,7 +20,7 @@ export function AppShell({ client, status, busy, style, onProcessDemo, onEscalat
       <main className="main-panel">
         <header className="topbar">
           <div>
-            <h1>CoVault Missed Call Capture</h1>
+            <h1>Kavor Calls</h1>
             <p>{client?.name || 'Loading client'} · {status}</p>
           </div>
           <div className="topbar-actions">

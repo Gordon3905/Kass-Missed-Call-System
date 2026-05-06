@@ -8,7 +8,7 @@ import { SequenceEditor } from './components/SequenceEditor.jsx';
 import { WhiteLabelPanel } from './components/WhiteLabelPanel.jsx';
 import { IntegrationStatus } from './components/IntegrationStatus.jsx';
 
-const CLIENT_ID = 'client_covault_demo';
+const CLIENT_ID = 'client_kavor_demo';
 
 export function App() {
   const [metrics, setMetrics] = useState(null);

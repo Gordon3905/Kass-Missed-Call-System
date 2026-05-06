@@ -1,6 +1,6 @@
-# CoVault Missed Call Capture
+# Kavor Automation System / Kavor Calls
 
-CoVault Missed Call Capture is a full-stack JavaScript scaffold for capturing missed calls, transcribing voicemails, summarizing caller intent, assigning urgency, logging callback work, triggering follow-up, escalating stale high-priority callbacks, and measuring booked-meeting conversion.
+Kavor Automation System / Kavor Calls is a full-stack JavaScript scaffold for capturing missed calls, transcribing voicemails, summarizing caller intent, assigning urgency, logging callback work, triggering follow-up, escalating stale high-priority callbacks, and measuring booked-meeting conversion.
 
 ## Stack
 
@@ -52,3 +52,4 @@ Mock modes are deterministic and safe for demos. Live modes validate required cr
 - `GET /api/calls` returns missed calls joined with callback fields including `due_at`, `callback_status`, `task_status`, `outcome`, and `escalated_at`.
 - `GET /api/metrics` returns total calls, urgency mix, callback completion rate, booked meetings, conversion rate, average response time, and outcome distribution.
 - `POST /api/callback-tasks/escalate-stale` returns `{ escalated: [...] }`.
+

@@ -13,9 +13,9 @@ function setup() {
   db.exec(fs.readFileSync(new URL('../server/db/schema.sql', import.meta.url), 'utf8'));
   const clients = createClientRepository(db);
   clients.upsert({
-    id: 'client_covault_demo',
-    name: 'CoVault Demo Client',
-    brand_name: 'CoVault Response',
+    id: 'client_kavor_demo',
+    name: 'Kavor Automation System Demo Client',
+    brand_name: 'Kavor Calls',
     logo_url: '',
     primary_color: '#155EEF',
     timezone: 'America/New_York',
@@ -31,7 +31,7 @@ describe('ingestionService', () => {
     const { db, clients } = setup();
     const calls = createCallRepository(db);
     const sequences = createSequenceRepository(db);
-    sequences.upsertTemplate({ id: 't1', client_id: 'client_covault_demo', urgency: 'high', channel: 'sms', subject: '', body: 'Call {{caller_name}} now.' });
+    sequences.upsertTemplate({ id: 't1', client_id: 'client_kavor_demo', urgency: 'high', channel: 'sms', subject: '', body: 'Call {{caller_name}} now.' });
     const service = createIngestionService({
       clientRepository: clients,
       callRepository: calls,
@@ -44,7 +44,7 @@ describe('ingestionService', () => {
     });
 
     const result = await service.processMissedCall({
-      clientId: 'client_covault_demo',
+      clientId: 'client_kavor_demo',
       from: '+14155550123',
       callerName: '',
       callTime: '2026-05-05T14:00:00.000Z',

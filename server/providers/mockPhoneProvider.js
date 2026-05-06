@@ -2,7 +2,7 @@ export function createMockPhoneProvider() {
   return {
     sampleMissedCall() {
       return {
-        clientId: 'client_covault_demo',
+        clientId: 'client_kavor_demo',
         from: '+14155550123',
         callerName: 'Avery Johnson',
         callTime: new Date().toISOString(),

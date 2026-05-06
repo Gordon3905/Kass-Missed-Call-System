@@ -5,4 +5,4 @@ import { seedDemoData } from './demoSeed.js';
 const config = loadEnv();
 const db = createDb(config);
 seedDemoData(db, config);
-console.log('Database seeded with realistic CoVault demo data.');
+console.log('Database seeded with realistic Kavor Automation System demo data.');

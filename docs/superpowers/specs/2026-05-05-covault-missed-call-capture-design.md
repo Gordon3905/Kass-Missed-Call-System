@@ -1,8 +1,8 @@
-# CoVault Missed Call Capture Design
+# Kavor Automation System / Kavor Calls Design
 
 ## Purpose
 
-CoVault Missed Call Capture is a white-labelable AI system that captures missed calls, extracts caller information, transcribes voicemails, summarizes intent and urgency, logs the result to a local CRM/database, and triggers intelligent follow-up workflows. The first build will be a credible demo and production-ready scaffold: a single full-stack JavaScript app with mocked external providers by default and clean boundaries for live Twilio, AI transcription, CRM, SMS, and email providers.
+Kavor Automation System / Kavor Calls is a white-labelable AI system that captures missed calls, extracts caller information, transcribes voicemails, summarizes intent and urgency, logs the result to a local CRM/database, and triggers intelligent follow-up workflows. The first build will be a credible demo and production-ready scaffold: a single full-stack JavaScript app with mocked external providers by default and clean boundaries for live Twilio, AI transcription, CRM, SMS, and email providers.
 
 ## Goals
 
@@ -35,7 +35,7 @@ Use a modular monolith:
 - Provider adapters for mock and future live integrations.
 - Shared environment validation so modes are explicit and misconfiguration is visible.
 
-This gives CoVault a useful local demo today while preserving the seams needed for production integrations tomorrow.
+This gives Kavor Automation System a useful local demo today while preserving the seams needed for production integrations tomorrow.
 
 ## System Architecture
 
@@ -130,7 +130,7 @@ Callback outcomes:
 Follow-up and conversion tables:
 
 - `follow_up_sequences`: per-client rules for urgency tiers, due windows, notification channels, and escalation windows.
-- `message_templates`: per-client, per-urgency SMS/email templates with variables such as caller name, callback number, intent summary, and CoVault/client branding.
+- `message_templates`: per-client, per-urgency SMS/email templates with variables such as caller name, callback number, intent summary, and Kavor Automation System/client branding.
 - `follow_up_attempts`: every SMS/email/callback reminder sent or queued.
 - `booked_meetings`: meeting conversion records tied to missed calls and callback tasks.
 - `integrations`: provider mode, status, last check, and public configuration metadata.
@@ -332,3 +332,4 @@ This design is ready to become an implementation plan. The first implementation 
 6. Build the React dashboard and editors.
 7. Add realistic seed data with varied buyer, support, rescheduling, urgent, unqualified, and wrong-number caller intents.
 8. Add tests and run verification.
+

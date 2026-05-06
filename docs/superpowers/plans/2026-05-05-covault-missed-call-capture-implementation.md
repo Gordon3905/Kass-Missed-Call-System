@@ -1,8 +1,8 @@
-# CoVault Missed Call Capture Implementation Plan
+# Kavor Automation System / Kavor Calls Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a single full-stack JavaScript app for CoVault Missed Call Capture with a React dashboard, Express API, SQLite development database, mock/live provider boundaries, realistic demo data, callback outcome tracking, and stale high-urgency escalation.
+**Goal:** Build a single full-stack JavaScript app for Kavor Automation System / Kavor Calls with a React dashboard, Express API, SQLite development database, mock/live provider boundaries, realistic demo data, callback outcome tracking, and stale high-urgency escalation.
 
 **Architecture:** Use a modular monolith with React + Vite under `client/`, Express under `server/`, shared constants under `shared/`, and tests under `tests/`. Keep all persistence behind repositories, all external systems behind providers, and all workflow decisions inside services so SQLite can be replaced by Postgres and mock providers can be replaced by live providers through environment variables.
 
@@ -215,7 +215,7 @@ Create `index.html`:
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CoVault Missed Call Capture</title>
+    <title>Kavor Automation System / Kavor Calls</title>
   </head>
   <body>
     <div id="root"></div>
@@ -377,7 +377,7 @@ Run:
 
 ```bash
 git add package.json package-lock.json .gitignore .env.example index.html vite.config.js vitest.config.js shared/constants.js server/config/env.js tests/env.test.js docs/superpowers/specs/2026-05-05-covault-missed-call-capture-design.md
-git commit -m "chore: scaffold CoVault app configuration"
+git commit -m "chore: scaffold Kavor Automation System app configuration"
 ```
 
 Expected: Commit succeeds.
@@ -652,9 +652,9 @@ function iso(minutesAgo) {
 }
 
 const client = {
-  id: 'client_covault_demo',
-  name: 'CoVault Demo Client',
-  brand_name: 'CoVault Response',
+  id: 'client_kavor_demo',
+  name: 'Kavor Automation System Demo Client',
+  brand_name: 'Kavor Calls',
   logo_url: '',
   primary_color: '#155EEF',
   timezone: 'America/New_York',
@@ -765,14 +765,14 @@ for (const [urgency, channel, subject, body] of templates) {
   `).run(`template_${urgency}_${channel}`, client.id, urgency, channel, subject, body, iso(1200), iso(1200));
 }
 
-console.log('Database seeded with realistic CoVault demo data.');
+console.log('Database seeded with realistic Kavor Automation System demo data.');
 ```
 
 - [ ] **Step 6: Run migration, seed, and security test**
 
 Run: `npm run db:reset`
 
-Expected: Console includes `Database migrated.` and `Database seeded with realistic CoVault demo data.`
+Expected: Console includes `Database migrated.` and `Database seeded with realistic Kavor Automation System demo data.`
 
 Run: `npm test -- tests/security.test.js`
 
@@ -1106,7 +1106,7 @@ export function createMockPhoneProvider() {
   return {
     sampleMissedCall() {
       return {
-        clientId: 'client_covault_demo',
+        clientId: 'client_kavor_demo',
         from: '+14155550123',
         callerName: 'Avery Johnson',
         callTime: new Date().toISOString(),
@@ -1611,9 +1611,9 @@ function setup() {
   db.exec(fs.readFileSync(new URL('../server/db/schema.sql', import.meta.url), 'utf8'));
   const clients = createClientRepository(db);
   clients.upsert({
-    id: 'client_covault_demo',
-    name: 'CoVault Demo Client',
-    brand_name: 'CoVault Response',
+    id: 'client_kavor_demo',
+    name: 'Kavor Automation System Demo Client',
+    brand_name: 'Kavor Calls',
     logo_url: '',
     primary_color: '#155EEF',
     timezone: 'America/New_York',
@@ -1629,7 +1629,7 @@ describe('ingestionService', () => {
     const { db, clients } = setup();
     const calls = createCallRepository(db);
     const sequences = createSequenceRepository(db);
-    sequences.upsertTemplate({ id: 't1', client_id: 'client_covault_demo', urgency: 'high', channel: 'sms', subject: '', body: 'Call {{caller_name}} now.' });
+    sequences.upsertTemplate({ id: 't1', client_id: 'client_kavor_demo', urgency: 'high', channel: 'sms', subject: '', body: 'Call {{caller_name}} now.' });
     const service = createIngestionService({
       clientRepository: clients,
       callRepository: calls,
@@ -1642,7 +1642,7 @@ describe('ingestionService', () => {
     });
 
     const result = await service.processMissedCall({
-      clientId: 'client_covault_demo',
+      clientId: 'client_kavor_demo',
       from: '+14155550123',
       callerName: '',
       callTime: '2026-05-05T14:00:00.000Z',
@@ -1897,7 +1897,7 @@ const config = loadEnv();
 const app = createApp();
 
 app.listen(config.port, () => {
-  console.log(`CoVault API listening on http://127.0.0.1:${config.port}`);
+  console.log(`Kavor Automation System API listening on http://127.0.0.1:${config.port}`);
 });
 ```
 
@@ -2079,7 +2079,7 @@ Run:
 
 ```bash
 git add client index.html
-git commit -m "feat: add CoVault missed-call dashboard"
+git commit -m "feat: add Kavor Automation System missed-call dashboard"
 ```
 
 Expected: Commit succeeds.
@@ -2098,9 +2098,9 @@ Expected: Commit succeeds.
 Create `README.md`:
 
 ```md
-# CoVault Missed Call Capture
+# Kavor Automation System / Kavor Calls
 
-CoVault Missed Call Capture is a full-stack JavaScript scaffold for capturing missed calls, transcribing voicemails, summarizing caller intent, assigning urgency, logging callback work, triggering follow-up, escalating stale high-priority callbacks, and measuring booked-meeting conversion.
+Kavor Automation System / Kavor Calls is a full-stack JavaScript scaffold for capturing missed calls, transcribing voicemails, summarizing caller intent, assigning urgency, logging callback work, triggering follow-up, escalating stale high-priority callbacks, and measuring booked-meeting conversion.
 
 ## Stack
 
@@ -2166,7 +2166,7 @@ Run:
 
 ```bash
 git add README.md .env.example package.json package-lock.json
-git commit -m "docs: add CoVault setup and demo guide"
+git commit -m "docs: add Kavor Automation System setup and demo guide"
 ```
 
 Expected: Commit succeeds.
@@ -2202,3 +2202,4 @@ Type consistency:
 - Callback statuses are `open`, `completed`, and `escalated`.
 - Callback outcomes match the spec: `booked_meeting`, `voicemail_left`, `no_answer`, `not_qualified`, `wrong_number`, `resolved_no_meeting`.
 - Client business hours are stored as JSON and exposed as parsed objects through repositories.
+

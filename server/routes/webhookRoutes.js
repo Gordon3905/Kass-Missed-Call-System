@@ -2,7 +2,7 @@ import { createIngestionService } from '../services/ingestionService.js';
 
 function normalizeTwilioPayload(body) {
   return {
-    clientId: body.clientId || body.ClientId || 'client_covault_demo',
+    clientId: body.clientId || body.ClientId || 'client_kavor_demo',
     from: body.From,
     callerName: body.CallerName || '',
     callTime: body.CallTime || new Date().toISOString(),

@@ -10,9 +10,9 @@ function iso(minutesAgo) {
 export function seedDemoData(db, config) {
   const secure = createCrypto(config.encryptionKey);
   const client = {
-    id: 'client_covault_demo',
-    name: 'CoVault Demo Client',
-    brand_name: 'CoVault Response',
+    id: 'client_kavor_demo',
+    name: 'Kavor Automation System Demo Client',
+    brand_name: 'Kavor Calls',
     logo_url: '',
     primary_color: '#155EEF',
     timezone: 'America/New_York',
@@ -85,8 +85,8 @@ export function seedDemoData(db, config) {
 
   const templates = [
     ['high', 'sms', '', 'Urgent missed call from {{caller_name}}: {{intent_summary}}. Call back now at {{caller_number}}.'],
-    ['high', 'email', 'High urgency missed call for {{client_brand_name}}', '{{caller_name}} needs immediate follow-up: {{intent_summary}}'],
-    ['medium', 'email', 'Callback queued for {{client_brand_name}}', '{{caller_name}} should be called during the next business day. Context: {{intent_summary}}'],
+    ['high', 'email', 'High urgency missed call for {{client_brand_name}}', '{{caller_name}} needs immediate follow-up from Kavor Automation System: {{intent_summary}}'],
+    ['medium', 'email', 'Callback queued for {{client_brand_name}}', '{{caller_name}} should be called during the next business day by Kavor Automation System. Context: {{intent_summary}}'],
     ['low', 'email', 'Low urgency missed call logged', '{{caller_name}} left a low-priority message: {{intent_summary}}'],
   ];
 
