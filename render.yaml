@@ -29,3 +29,7 @@ services:
         generateValue: true
       - key: CORS_ORIGIN
         value: "*"
+      - key: ALLOWED_ORIGINS
+        value: "*"
+      - key: DASHBOARD_BASE_URL
+        value: ""

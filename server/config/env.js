@@ -11,7 +11,8 @@ function readMode(rawEnv, key, allowed, fallback) {
 export function loadEnv(rawEnv = process.env) {
   const env = {
     port: Number(rawEnv.PORT || 5174),
-    corsOrigin: rawEnv.CORS_ORIGIN || 'http://127.0.0.1:5173,http://127.0.0.1:5193',
+    corsOrigin: rawEnv.CORS_ORIGIN || rawEnv.ALLOWED_ORIGINS || 'http://127.0.0.1:5173,http://127.0.0.1:5193',
+    dashboardBaseUrl: rawEnv.DASHBOARD_BASE_URL || '',
     sqlitePath: rawEnv.SQLITE_PATH || './data/covault.db',
     databaseProvider: readMode(rawEnv, 'DATABASE_PROVIDER', PROVIDER_MODES.DATABASE, 'sqlite'),
     phoneProvider: readMode(rawEnv, 'PHONE_PROVIDER', PROVIDER_MODES.PHONE, 'mock'),
