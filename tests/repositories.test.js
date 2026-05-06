@@ -33,6 +33,33 @@ describe('repositories', () => {
     });
 
     expect(clients.getById('client_1').high_urgency_escalation_minutes).toBe(30);
+    expect(clients.getById('client_1').settings).toEqual({});
+  });
+
+  it('persists simple workspace settings on the client record', () => {
+    const clients = createClientRepository(db);
+    clients.upsert({
+      id: 'client_1',
+      name: 'Apex Dental',
+      brand_name: 'Apex Dental',
+      logo_url: '',
+      primary_color: '#155EEF',
+      timezone: 'America/New_York',
+      business_hours: { monday: ['09:00', '17:00'] },
+      high_urgency_escalation_minutes: 30,
+      retention_days: 365,
+      settings: {
+        scoring: { confidenceThreshold: 82 },
+        teams: ['Sales Team'],
+        reps: ['Jamie Fox'],
+      },
+    });
+
+    expect(clients.getById('client_1').settings).toEqual({
+      scoring: { confidenceThreshold: 82 },
+      teams: ['Sales Team'],
+      reps: ['Jamie Fox'],
+    });
   });
 
   it('tracks callback outcomes and booked meetings', () => {

@@ -25,15 +25,24 @@ export function seedDemoData(db, config) {
     }),
     high_urgency_escalation_minutes: 30,
     retention_days: 365,
+    settings_json: JSON.stringify({
+      scoring: {
+        confidenceThreshold: 80,
+        sameDayCallbackMinutes: 30,
+        spamKeywords: 'wrong number, unsubscribe',
+      },
+      teams: ['Sales Team', 'Nurture Team'],
+      reps: ['Avery Johnson', 'Mina Patel', 'Jordan Lee'],
+    }),
     created_at: iso(1200),
     updated_at: iso(1200),
   };
 
   db.prepare(`
     INSERT OR REPLACE INTO clients
-    (id, name, brand_name, logo_url, primary_color, timezone, business_hours, high_urgency_escalation_minutes, retention_days, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `).run(client.id, client.name, client.brand_name, client.logo_url, client.primary_color, client.timezone, client.business_hours, client.high_urgency_escalation_minutes, client.retention_days, client.created_at, client.updated_at);
+    (id, name, brand_name, logo_url, primary_color, timezone, business_hours, high_urgency_escalation_minutes, retention_days, settings_json, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(client.id, client.name, client.brand_name, client.logo_url, client.primary_color, client.timezone, client.business_hours, client.high_urgency_escalation_minutes, client.retention_days, client.settings_json, client.created_at, client.updated_at);
 
   const calls = [
     ['Avery Johnson', '+14155550123', 18, 'We are ready to book a walkthrough this week and need pricing before our board meeting tomorrow.', 'Buyer ready to book a walkthrough and asking for pricing before a deadline.', 'high', 'open', ''],

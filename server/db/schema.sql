@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS clients (
   business_hours TEXT NOT NULL,
   high_urgency_escalation_minutes INTEGER NOT NULL DEFAULT 30,
   retention_days INTEGER NOT NULL DEFAULT 365,
+  settings_json TEXT NOT NULL DEFAULT '{}',
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL
 );

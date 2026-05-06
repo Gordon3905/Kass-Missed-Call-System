@@ -1,6 +1,12 @@
-import { BellRing, PhoneIncoming, Radar, RefreshCw } from 'lucide-react';
+import { BellRing, PhoneIncoming, RefreshCw, Settings2, Users } from 'lucide-react';
 
-export function AppShell({ client, status, busy, style, onProcessDemo, onEscalate, children }) {
+const tabs = [
+  { id: 'calls', label: 'Missed Calls', icon: PhoneIncoming },
+  { id: 'leads', label: 'Leads', icon: Users },
+  { id: 'settings', label: 'Settings', icon: Settings2 },
+];
+
+export function AppShell({ client, status, busy, style, activeTab, onTabChange, onProcessDemo, onEscalate, children }) {
   return (
     <div className="app-shell" style={style}>
       <aside className="sidebar">
@@ -12,31 +18,44 @@ export function AppShell({ client, status, busy, style, onProcessDemo, onEscalat
           </div>
         </div>
         <nav className="nav-list" aria-label="Primary">
-          <a href="#overview" className="active"><Radar size={16} /> Overview</a>
-          <a href="#calls"><PhoneIncoming size={16} /> Missed Calls</a>
-          <a href="#settings"><BellRing size={16} /> Follow-Up</a>
+          {tabs.map((tab) => {
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                className={`nav-button ${activeTab === tab.id ? 'active' : ''}`}
+                onClick={() => onTabChange(tab.id)}
+              >
+                <Icon size={16} />
+                {tab.label}
+              </button>
+            );
+          })}
         </nav>
       </aside>
       <main className="main-panel">
         <header className="topbar">
           <div>
-            <h1>Kavor Calls</h1>
-            <p>{client?.name || 'Loading client'} · {status}</p>
+            <h1>{activeTab === 'calls' ? 'Missed Calls' : activeTab === 'leads' ? 'Leads' : 'Settings'}</h1>
+            <p>{status}</p>
           </div>
           <div className="topbar-actions">
-            <button className="ghost-button" type="button" disabled={busy} onClick={onEscalate}>
-              <BellRing size={16} />
-              Escalate stale
-            </button>
-            <button className="primary-button" type="button" disabled={busy} onClick={onProcessDemo}>
-              <RefreshCw size={16} />
-              Process sample
-            </button>
+            {activeTab === 'calls' ? (
+              <>
+                <button className="ghost-button" type="button" disabled={busy} onClick={onEscalate}>
+                  <BellRing size={16} />
+                  Escalate stale
+                </button>
+                <button className="primary-button" type="button" disabled={busy} onClick={onProcessDemo}>
+                  <RefreshCw size={16} />
+                  Process sample
+                </button>
+              </>
+            ) : null}
           </div>
         </header>
-        <div id="overview" className="content-flow">
-          {children}
-        </div>
+        <div className="content-flow">{children}</div>
       </main>
     </div>
   );
