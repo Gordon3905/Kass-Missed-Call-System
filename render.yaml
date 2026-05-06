@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: covault-missed-call-capture-api
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run db:reset && npm start
+    healthCheckPath: /api/metrics
+    envVars:
+      - key: NODE_VERSION
+        value: 24
+      - key: DATABASE_PROVIDER
+        value: sqlite
+      - key: SQLITE_PATH
+        value: ./data/covault.db
+      - key: PHONE_PROVIDER
+        value: mock
+      - key: TRANSCRIPTION_PROVIDER
+        value: mock
+      - key: INTENT_PROVIDER
+        value: mock
+      - key: CRM_PROVIDER
+        value: local
+      - key: SMS_PROVIDER
+        value: mock
+      - key: EMAIL_PROVIDER
+        value: mock
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: "*"

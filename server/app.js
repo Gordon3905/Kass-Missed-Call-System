@@ -39,6 +39,19 @@ export function createApp(options = {}) {
   const secure = createCrypto(config.encryptionKey);
   const app = express();
 
+  app.use((req, res, next) => {
+    const allowedOrigins = config.corsOrigin.split(',').map((origin) => origin.trim()).filter(Boolean);
+    const requestOrigin = req.headers.origin;
+    if (requestOrigin && (allowedOrigins.includes('*') || allowedOrigins.includes(requestOrigin))) {
+      res.setHeader('Access-Control-Allow-Origin', requestOrigin);
+      res.setHeader('Vary', 'Origin');
+    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PATCH,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+    if (req.method === 'OPTIONS') return res.sendStatus(204);
+    return next();
+  });
+
   app.use(express.json());
 
   registerDemoRoutes(app, { repositories, providers, secure });

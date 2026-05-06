@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CoVault Missed Call Capture turns missed calls into transcribed, prioritized, followed-up opportunities."
+    />
+    <title>CoVault | Missed Call Capture</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top">CoVault</a>
+      <nav aria-label="Primary">
+        <a href="#workflow">Workflow</a>
+        <a href="#metrics">Metrics</a>
+        <a href="#demo">Demo</a>
+      </nav>
+      <a class="nav-cta" href="#demo">Book demo</a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>Recover missed-call revenue before competitors call back.</h1>
+          <p>
+            CoVault captures missed calls, transcribes voicemails, detects urgency,
+            alerts sales teams, and tracks booked-meeting conversion from the calls
+            your clients almost lost.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#demo">Show me the workflow</a>
+            <a class="secondary-link" href="#metrics">See metrics</a>
+          </div>
+        </div>
+        <div class="signal-panel" aria-label="Live missed-call example">
+          <span class="status-dot"></span>
+          <strong>High urgency missed call</strong>
+          <p>“We are ready to book a walkthrough and need pricing before tomorrow.”</p>
+          <dl>
+            <div><dt>Intent</dt><dd>Ready to buy</dd></div>
+            <div><dt>Action</dt><dd>Immediate callback</dd></div>
+            <div><dt>SLA</dt><dd>30 min escalation</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="band" id="workflow">
+        <h2>From voicemail to booked meeting</h2>
+        <div class="steps">
+          <article><span>1</span><h3>Capture</h3><p>Twilio-shaped missed-call webhooks normalize caller and recording data.</p></article>
+          <article><span>2</span><h3>Understand</h3><p>AI transcribes voicemail, summarizes intent, and assigns urgency.</p></article>
+          <article><span>3</span><h3>Act</h3><p>Follow-up sequences alert the right team and queue callbacks by business hours.</p></article>
+          <article><span>4</span><h3>Measure</h3><p>Track outcomes, booked meetings, escalation, and conversion rate.</p></article>
+        </div>
+      </section>
+
+      <section class="metrics" id="metrics">
+        <div><strong>57%</strong><span>callback completion</span></div>
+        <div><strong>29%</strong><span>missed-call conversion</span></div>
+        <div><strong>30m</strong><span>high urgency escalation</span></div>
+      </section>
+
+      <section class="demo" id="demo">
+        <h2>Built for white-label client demos</h2>
+        <p>
+          Customize brand settings, urgency tiers, message templates, and provider modes
+          per client while keeping the demo grounded in realistic missed-call scenarios.
+        </p>
+        <button type="button" id="demoButton">Preview demo narrative</button>
+        <p class="demo-output" id="demoOutput" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

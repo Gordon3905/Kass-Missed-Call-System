@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
+    "start": "node server/index.js",
     "server": "node server/index.js",
     "build": "vite build",
     "test": "vitest run",
@@ -25,5 +26,8 @@
     "supertest": "^7.0.0",
     "vitest": "^3.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": ">=24.0.0"
+  }
 }
